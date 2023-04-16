@@ -4,14 +4,19 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Tickets</h1>
 
+<!--
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+-->
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.UseDate)
             </th>
@@ -28,6 +33,9 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.UseDate)
             </td>
             <td>
@@ -37,9 +45,9 @@
                 @Html.DisplayFor(modelItem => item.EntranceGate)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-success">Edit</a> 
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info">Details</a> 
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Delete</a>
             </td>
         </tr>
 }

@@ -12,8 +12,8 @@ using Parcial2_LondonoValenciaSebastian.DAL;
 namespace Parcial2_LondonoValenciaSebastian.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20230415161729_createdatabase")]
-    partial class createdatabase
+    [Migration("20230416083903_createnew")]
+    partial class createnew
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,20 +35,42 @@ namespace Parcial2_LondonoValenciaSebastian.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("IsUsed")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<bool?>("IsUsed")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("UseDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id")
-                        .IsUnique();
-
                     b.ToTable("Tickets");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("ddd3fbdb-fb96-42c6-8fca-fbce4384feb3"),
+                            IsUsed = false
+                        },
+                        new
+                        {
+                            Id = new Guid("b6aefdbb-682f-41fa-9094-bfc700334190"),
+                            IsUsed = false
+                        },
+                        new
+                        {
+                            Id = new Guid("24d3e3e2-74c4-425b-90f8-89ad29b0abbd"),
+                            IsUsed = false
+                        },
+                        new
+                        {
+                            Id = new Guid("36c45637-b123-467e-a588-b96329972fe9"),
+                            IsUsed = false
+                        },
+                        new
+                        {
+                            Id = new Guid("93f0d2f7-1206-4023-9aed-6eaba04bba16"),
+                            IsUsed = false
+                        });
                 });
 #pragma warning restore 612, 618
         }

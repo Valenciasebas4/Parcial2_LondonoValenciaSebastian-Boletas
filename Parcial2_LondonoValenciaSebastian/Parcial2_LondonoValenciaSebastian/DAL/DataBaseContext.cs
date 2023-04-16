@@ -13,13 +13,35 @@ namespace Parcial2_LondonoValenciaSebastian.DAL
         }
         // Se mapea la identidad para convertirla en una tabla
         public DbSet<Ticket> Tickets { get; set; }
-        
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+
+        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Ticket>().HasIndex(c => c.Id).IsUnique();
             
+
+        }*/
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            for (int i = 0; i < 5; i++)
+            {
+                modelBuilder.Entity<Ticket>().HasData(
+                    new Ticket
+                    {
+                        Id = Guid.NewGuid(),
+                        UseDate = null,
+                        IsUsed = false,
+                        EntranceGate = null
+                    }
+                );
+            }
         }
+
+
+
     }
 }
