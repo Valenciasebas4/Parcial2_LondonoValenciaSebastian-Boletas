@@ -64,6 +64,7 @@ namespace Parcial2_LondonoValenciaSebastian.Controllers
                 else if (!boleta.IsUsed.ToString().ToLower().Equals("false"))
                 {
                     TempData["boletaUsada"] = "Boleta ya fue usada";
+                    return RedirectToAction("Details", new { id = boleta.Id });
                 }
                 else
                 {

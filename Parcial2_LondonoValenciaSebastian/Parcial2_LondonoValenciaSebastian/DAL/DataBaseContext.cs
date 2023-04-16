@@ -27,7 +27,7 @@ namespace Parcial2_LondonoValenciaSebastian.DAL
         {
             base.OnModelCreating(modelBuilder);
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 30; i++)
             {
                 modelBuilder.Entity<Ticket>().HasData(
                     new Ticket
