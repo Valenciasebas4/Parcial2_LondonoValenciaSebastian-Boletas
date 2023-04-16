@@ -45,6 +45,37 @@ namespace Parcial2_LondonoValenciaSebastian.Controllers
             return View(ticket);
         }
 
+        public IActionResult ValidarBoleta(string boletaId)
+        {
+            Guid id;
+
+            if (!Guid.TryParse(boletaId, out id))
+            {
+                TempData["boletaInvalida"] = "Boleta no válida";
+            }
+            else
+            {
+                var boleta = _context.Tickets.FirstOrDefault(t => t.Id == id);
+
+                if (boleta == null)
+                {
+                    TempData["boletaInvalida"] = "Boleta no válida";
+                }
+                else if (!boleta.IsUsed.ToString().ToLower().Equals("false"))
+                {
+                    TempData["boletaUsada"] = "Boleta ya fue usada";
+                }
+                else
+                {
+                    TempData["boletaValida"] = "Boleta válida";
+                    return RedirectToAction("Edit", new { id = boleta.Id });
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
         // GET: Tickets/Create
         public IActionResult Create()
         {
